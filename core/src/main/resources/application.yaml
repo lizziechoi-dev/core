@@ -1,3 +1,7 @@
 spring:
   application:
     name: core
+logging:
+  level:
+    org.springframework: debug
+
