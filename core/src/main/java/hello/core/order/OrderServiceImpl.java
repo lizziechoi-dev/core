@@ -9,6 +9,7 @@ import hello.core.member.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+//@Component("service") // Annotation-specified bean name 'service' for bean class [hello.core.order.OrderServiceImpl] conflicts with existing
 @Component
 public class OrderServiceImpl implements OrderService {
 
