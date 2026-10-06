@@ -8,11 +8,12 @@ import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 //@Component("service") // Annotation-specified bean name 'service' for bean class [hello.core.order.OrderServiceImpl] conflicts with existing
 @Component
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
 //    private final MemberRepository memberRepository = new MemoryMemberRepository();
@@ -34,12 +35,17 @@ public class OrderServiceImpl implements OrderService {
 //        this.memberRepository = memberRepository;
 //    }
 
-    // @Autowired // 생성자 1개일 땐 Autowied 생략 가능
-//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-//        System.out.println("1. OrderServiceImpl.OrderServiceImpl");
-//        this.memberRepository = memberRepository;
-//        this.discountPolicy = discountPolicy;
-//    }
+    //@Autowired
+    //private DiscountPolicy rateDiscountPolicy; // Autowired 필드 명 매칭
+
+     @Autowired // 생성자 1개일 땐 Autowied 생략 가능
+    //public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy rateDiscountPolicy) { // Autowired 필드 명 매칭
+    //public OrderServiceImpl(MemberRepository memberRepository, @Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) { // @Qualifier 사용
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        System.out.println("1. OrderServiceImpl.OrderServiceImpl");
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
 //    @Autowired
 //    public void init(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
